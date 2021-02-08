@@ -1116,6 +1116,9 @@ function ResetGame() {
     ZTS = [];
     CPL = 0;
     difficultylevel += 1;
+    if (loadData("HighScore") == null) {
+        UpdateData("Wave "+difficultylevel.toString(),"HighScore");
+    }
     if (loadData("HighScore").replace(/\D/g,'') < difficultylevel) {
         UpdateData("Wave "+difficultylevel.toString(),"HighScore");
     }
@@ -1283,6 +1286,9 @@ function CheckForLoss() {
         AC.aliveSprite = "ArmorChomperRight.PNG";
         fighterPhysArray[fighterArray.indexOf(AC)].src = "ArmorChomperRight.PNG";
         CreateConsoleText("Armor Chomper has died on wave "+difficultylevel+".")
+        if (loadData("HighScore") == null) {
+            UpdateData("Wave "+difficultylevel.toString(),"HighScore");
+        }
         if (loadData("HighScore").replace(/\D/g,'') < difficultylevel) {
             UpdateData("Wave "+difficultylevel.toString(),"HighScore");
         }
