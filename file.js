@@ -87,7 +87,7 @@ CriticalTheme.loop();
 CriticalStage = false;
 SettingData = loadData("SettingData");
 if (SettingData == null) {
-    SettingData = [100,(1500-150)/18.5]
+    SettingData = [1,(1500-150)/18.5]
 }
 currentVolume = SettingData[0];
 turntime = (18.5*SettingData[1])+150;
