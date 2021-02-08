@@ -92,7 +92,7 @@ if (SettingData == null) {
 currentVolume = SettingData[0];
 turntime = (18.5*SettingData[1])+150;
 SoundArray = [loss, win, ZombieTurnTheme, PlantTurnTheme, MenuTheme];
-News = "Beta Version 1.6.0 is out now, Fixing all the bugs regarding the new features was a pain<br><br> \
+News = "I'm such an idiot, I forgot to allow all the zombies to spawn so now the real game is ready<br><br> \
 New features:<br> \
 The game now saves data such as your settings, your highest wave and where you left off.<br>\
 Armor Chomper attacking system reworked internally - Seed spit will now hit the zombie behind a shield if it destroys the shield.<br>\
@@ -456,6 +456,7 @@ function StartGame() { /*add lawn background so chomper is defending house*/
     zhealthbararray = [];
     AC.coords = [2,2];
     difficultylevel = 1;
+    chomperhealth.innerHTML = 225;
     for (z in ZombieArray) {
         ZombieArray[z].health = 50;
         prevzposes.push(ZombieArray[z].coords);
@@ -707,8 +708,6 @@ function DoDamage(zombie, damageprojectile) {
                 fighterArray.push(USZ);
                 CheckZindexes();
                 //updategrid();
-            }
-            console.log(ZombieArray,zhealthbararray)
             for (ZHB in zhealthbararray) { //*fix where reg zombie has armor symbol and scream door does not
                 if (ZombieArray[ZHB].underShield == "" && zhealthbararray[ZHB].src.split("/")[zhealthbararray[ZHB].src.split("/").length-1] == "ArmorHeartIcon.PNG") {
                     zhealthbararray[ZHB].src = "HeartIcon.PNG";
@@ -1134,8 +1133,8 @@ function ResetGame() {
     // Screendoor.health = 100;
     // Newspaper.health = 50;
     // MadNews.health = 125;
-    //ZombieArray = [Browncoat, Conehead, Imp, Buckethead, Yeti, GunZomb, Gargantuar, FootballZomb, Screendoor, Newspaper]; 
-    ZombieArray = [Screendoor, Imp, Browncoat];
+    ZombieArray = [Browncoat, Conehead, Imp, Buckethead, Yeti, GunZomb, Gargantuar, FootballZomb, Screendoor, Newspaper]; 
+    //ZombieArray = [Screendoor, Imp, Browncoat];
     AC.coords = [2,2]; 
     availablecoords = [];
     for (x=4; x<10; x++) {
@@ -1507,7 +1506,7 @@ Football.reloadTime = 1;
 Football.accuracy = 85;
 Door = new AttackType();
 Door.name = "Screen Door Smack";
-Door.damage = 40;
+Door.damage = 30;
 Door.range = 1;
 Door.reloadTime = 1;
 Paper = new AttackType();
@@ -1625,21 +1624,21 @@ Newspaper.aliveSprite = "Newspaper.PNG";
 griditemarray = [];
 phygriditems = [];
 ZombieArray = [];
-//Boss waves
+//Boss waves/*add boss waves*/
 class BossWave {
     constructor() {
-        this.name = "";
-        this.zombies = [];
-        this.icon = "";
-        this.availablecoords = [];
-        this.randomizecoords = false;
-        this.theme = "";
+        this.name = ""; //name of boss wave
+        this.zombies = []; //zombies in boss wave
+        this.image = ""; //image for
+        this.availablecoords = []; //what coordinates the zombies can spawn on
+        this.randomizecoords = false; //if the zombies spawn on a random of the given coordinates or if they are always in one spot
+        this.theme = ""; //theme to play during the boss wave
     }
 }
 AllImps = new BossWave();
 AllImps.name = "Oops! All Imps";
 AllImps.zombies = [Imp];
-AllImps.icon = "Imp.PNG";    /*add boss waves*/
+AllImps.image = "ImpGang.PNG";    
 for (x=4; x<10; x++) {
     for (y=0; y<5; y++) {
         AllImps.availablecoords.push([x,y]);
