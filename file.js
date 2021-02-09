@@ -105,7 +105,7 @@ Fixed many bugs, I don’t remember them all but they’re fixed now<br>\
 There is a known visual bug where the wrong zombie’s health icon is the metal icon, you don’t need to report it.<br>\
 <br>\
 Balance changes:<br>\
-No balance changes this update.<br>";
+Screen door zombie’s melee attack now does 30 damage instead of 40.<br>";
 function RemoveBlocker() {
     wc.removeChild(document.getElementById("MenuBlocker"))
     wc.removeChild(document.getElementById("MenuLoader"))
@@ -707,6 +707,7 @@ function DoDamage(zombie, damageprojectile) {
                 zhealthbararray.push(zhealthbar);
                 fighterArray.push(USZ);
                 CheckZindexes();
+            }
                 //updategrid();
             for (ZHB in zhealthbararray) { //*fix where reg zombie has armor symbol and scream door does not
                 if (ZombieArray[ZHB].underShield == "" && zhealthbararray[ZHB].src.split("/")[zhealthbararray[ZHB].src.split("/").length-1] == "ArmorHeartIcon.PNG") {
@@ -2560,5 +2561,3 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
-
-
